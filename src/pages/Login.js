@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 class Login extends React.Component {
   constructor() {
@@ -29,6 +29,11 @@ class Login extends React.Component {
         isDisabled: true,
       });
     }
+  }
+
+  handleButtonConfig = () => {
+    const { history } = this.props;
+    history.push('/settings');
   }
 
   fetchToken = async () => {
@@ -79,6 +84,14 @@ class Login extends React.Component {
         >
           Play
         </button>
+        <button
+          type="button"
+          onClick={ this.handleButtonConfig }
+          data-testid="btn-settings"
+        >
+          Settings
+        </button>
+
       </form>
     );
   }
