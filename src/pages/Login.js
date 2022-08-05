@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Login extends React.Component {
   constructor() {
@@ -32,10 +33,10 @@ class Login extends React.Component {
 
   fetchToken = async () => {
     const response = await fetch('https://opentdb.com/api_token.php?command=request');
-      const json = await response.json();
-      localStorage.setItem('token', json.token);
-      const { history } = this.props;
-      history.push('/game');
+    const json = await response.json();
+    localStorage.setItem('token', json.token);
+    const { history } = this.props;
+    history.push('/game');
   }
 
   render() {
@@ -82,5 +83,11 @@ class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Login;
