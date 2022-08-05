@@ -30,6 +30,14 @@ class Login extends React.Component {
     }
   }
 
+  fetchToken = async () => {
+    const response = await fetch('https://opentdb.com/api_token.php?command=request');
+      const json = await response.json();
+      localStorage.setItem('token', json.token);
+      const { history } = this.props;
+      history.push('/game');
+  }
+
   render() {
     const { nome, email, isDisabled } = this.state;
     return (
@@ -65,7 +73,7 @@ class Login extends React.Component {
         <button
           disabled={ isDisabled }
           type="button"
-          onClick={ () => {} }
+          onClick={ this.fetchToken }
           data-testid="btn-play"
         >
           Play
