@@ -1,10 +1,11 @@
 const INITIAL_STATE = {
+  data: [],
+  error: '',
   token: '',
   name: '',
   assertions: 0,
   score: 0,
   gravatarEmail: '',
-
 };
 
 const player = (state = INITIAL_STATE, action) => {
@@ -19,6 +20,16 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       score: action.score,
+    };
+  case 'REQUEST_SUCCESS':
+    return {
+      ...state,
+      data: action.data,
+    };
+  case 'REQUEST_ERROR':
+    return {
+      ...state,
+      error: action.error,
     };
   default:
     return state;
