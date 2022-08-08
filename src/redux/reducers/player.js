@@ -12,8 +12,8 @@ const player = (state = INITIAL_STATE, action) => {
   case 'USER_DATA':
     return {
       ...state,
-      name: action.name,
-      gravatarEmail: action.gravatarEmail,
+      name: action.user.nome,
+      gravatarEmail: action.user.email,
     };
   case 'PLAYER_SCORE':
     return {
