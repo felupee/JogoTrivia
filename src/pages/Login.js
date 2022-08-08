@@ -47,7 +47,7 @@ class Login extends React.Component {
   render() {
     const { nome, email, isDisabled } = this.state;
     return (
-      <form>
+      <form className="App">
         <label
           htmlFor="nome"
         >

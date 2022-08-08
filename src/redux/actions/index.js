@@ -1,3 +1,10 @@
-export const getQuestion = 'GET_QUESTION';
+export const userData = (user) => ({
+  type: 'USER_DATA',
+  user,
+});
 
-export const getName = 'GET_NOME';
+export const playerScore = (score) => ({
+  type: 'PLAYER_SCORE',
+  score,
+
+});
