@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
+import md5 from 'crypto-js/md5';
+import { userData } from '../redux/actions';
 
 class Login extends React.Component {
   constructor() {
@@ -9,6 +12,20 @@ class Login extends React.Component {
       nome: '',
       isDisabled: true,
     };
+  }
+
+  handleGravatarSrc = () => {
+    const { email } = this.state;
+    const gravatar = md5(email).toString();
+    const emailGravatar = `https://www.gravatar.com/avatar/${gravatar}`;
+    this.setState({
+      email: emailGravatar,
+    });
+  }
+
+  handleUserData = () => {
+    const { saveUserData } = this.props;
+    saveUserData(this.state);
   }
 
   handleChange = ({ target }) => {
@@ -41,6 +58,8 @@ class Login extends React.Component {
     const json = await response.json();
     localStorage.setItem('token', json.token);
     const { history } = this.props;
+    this.handleGravatarSrc();
+    this.handleUserData();
     history.push('/game');
   }
 
@@ -97,10 +116,15 @@ class Login extends React.Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  saveUserData: (payload) => dispatch(userData(payload)),
+});
+
 Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  saveUserData: PropTypes.func.isRequired,
 };
 
-export default Login;
+export default connect(null, mapDispatchToProps)(Login);
