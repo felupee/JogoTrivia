@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
   data: [],
+  index: 0,
   error: '',
   token: '',
   name: '',
@@ -30,6 +31,11 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       error: action.error,
+    };
+  case 'QUESTION_INDEX':
+    return {
+      ...state,
+      index: state.index + 1,
     };
   default:
     return state;

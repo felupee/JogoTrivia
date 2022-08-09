@@ -22,6 +22,10 @@ export const requestError = (error) => ({
   error,
 });
 
+export const questionIndex = () => ({
+  type: 'QUESTION_INDEX',
+});
+
 export const triviaThunk = () => async (dispatch) => {
   dispatch(requestBegin());
   try {

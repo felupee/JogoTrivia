@@ -2,32 +2,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../Components/Header';
-import { triviaThunk } from '../redux/actions/index';
+import { questionIndex, triviaThunk } from '../redux/actions/index';
 import QuestionCard from '../Components/QuestionCard';
 
 class Game extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      index: 0,
-    };
-  }
-
   componentDidMount() {
     const { fetchQuestions, error, history } = this.props;
     fetchQuestions();
+    const token = localStorage.getItem('token');
+    if (token === 'INVALID_TOKEN')history.push('/');
     if (error.length > 0) history.push('/');
   }
 
+  handleClickNextBtn = () => {
+    const { changeIndex } = this.props;
+    changeIndex();
+  }
+
   render() {
-    const { index } = this.state;
     return (
       <div>
         <Header />
-        <QuestionCard index={ index } />
+        <QuestionCard />
         <button
           type="button"
-          onClick={ () => {} }
+          onClick={ this.handleClickNextBtn }
         >
           Next
         </button>
@@ -43,6 +42,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchQuestions: () => dispatch(triviaThunk()),
+  changeIndex: () => dispatch(questionIndex()),
 });
 
 Game.propTypes = {
