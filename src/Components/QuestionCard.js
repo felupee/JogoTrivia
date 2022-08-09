@@ -1,8 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import '../styles/QuestionCard.css';
 import { showAnswer } from '../redux/actions';
+import '../styles/QuestionCard.css';
 
 class QuestionCard extends React.Component {
   handleDataTestId = (alt, i) => {
@@ -31,7 +31,7 @@ class QuestionCard extends React.Component {
   }
 
   render() {
-    const { questions, index, show } = this.props;
+    const { questions, index, show, disable } = this.props;
     if (questions.length === 0) return 'Loading';
     const incAnswer = 'incorrect_answers';
     const corrAnswer = 'correct_answer';
@@ -62,6 +62,7 @@ class QuestionCard extends React.Component {
                 key={ i }
                 type="button"
                 data-testid={ this.handleDataTestId(alt, i) }
+                disabled={ disable }
               >
                 { alt }
               </button>
