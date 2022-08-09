@@ -1,11 +1,19 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import Header from '../Components/Header';
-import { hideAnswer, questionIndex, triviaThunk } from '../redux/actions/index';
 import QuestionCard from '../Components/QuestionCard';
+import Timer from '../Components/Timer';
+import { hideAnswer, questionIndex, triviaThunk } from '../redux/actions/index';
 
 class Game extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      disable: false,
+    };
+  }
+
   componentDidMount() {
     const { fetchQuestions, error, history } = this.props;
     fetchQuestions();
@@ -18,13 +26,24 @@ class Game extends React.Component {
     const { changeIndex, hide } = this.props;
     changeIndex();
     hide();
+    this.setState({
+      disable: false,
+    });
+  }
+
+  handledisable = () => {
+    this.setState({
+      disable: true,
+    });
   }
 
   render() {
+    const { disable } = this.state;
     return (
       <div>
         <Header />
-        <QuestionCard />
+        <Timer btndisable={ this.handledisable } />
+        <QuestionCard disable={ disable } />
         <button
           type="button"
           onClick={ this.handleClickNextBtn }
