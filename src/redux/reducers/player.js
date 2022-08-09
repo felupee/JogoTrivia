@@ -7,6 +7,7 @@ const INITIAL_STATE = {
   assertions: 0,
   score: 0,
   gravatarEmail: '',
+  show: false,
 };
 
 const player = (state = INITIAL_STATE, action) => {
@@ -36,6 +37,16 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       index: state.index + 1,
+    };
+  case 'SHOW_ANSWER':
+    return {
+      ...state,
+      show: true,
+    };
+  case 'HIDE_ANSWER':
+    return {
+      ...state,
+      show: false,
     };
   default:
     return state;

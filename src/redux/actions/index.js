@@ -26,6 +26,14 @@ export const questionIndex = () => ({
   type: 'QUESTION_INDEX',
 });
 
+export const showAnswer = () => ({
+  type: 'SHOW_ANSWER',
+});
+
+export const hideAnswer = () => ({
+  type: 'HIDE_ANSWER',
+});
+
 export const triviaThunk = () => async (dispatch) => {
   dispatch(requestBegin());
   try {

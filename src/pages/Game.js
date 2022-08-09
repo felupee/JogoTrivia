@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../Components/Header';
-import { questionIndex, triviaThunk } from '../redux/actions/index';
+import { hideAnswer, questionIndex, triviaThunk } from '../redux/actions/index';
 import QuestionCard from '../Components/QuestionCard';
 
 class Game extends React.Component {
@@ -15,8 +15,9 @@ class Game extends React.Component {
   }
 
   handleClickNextBtn = () => {
-    const { changeIndex } = this.props;
+    const { changeIndex, hide } = this.props;
     changeIndex();
+    hide();
   }
 
   render() {
@@ -38,11 +39,13 @@ class Game extends React.Component {
 const mapStateToProps = (state) => ({
   questions: state.player.data,
   error: state.player.error,
+  show: state.player.show,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchQuestions: () => dispatch(triviaThunk()),
   changeIndex: () => dispatch(questionIndex()),
+  hide: () => dispatch(hideAnswer()),
 });
 
 Game.propTypes = {
