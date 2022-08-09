@@ -6,5 +6,34 @@ export const userData = (user) => ({
 export const playerScore = (score) => ({
   type: 'PLAYER_SCORE',
   score,
-
 });
+
+export const requestBegin = () => ({
+  type: 'REQUEST_BEGIN',
+});
+
+export const requestSuccess = (data) => ({
+  type: 'REQUEST_SUCCESS',
+  data,
+});
+
+export const requestError = (error) => ({
+  type: 'REQUEST_ERROR',
+  error,
+});
+
+export const questionIndex = () => ({
+  type: 'QUESTION_INDEX',
+});
+
+export const triviaThunk = () => async (dispatch) => {
+  dispatch(requestBegin());
+  try {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`https://opentdb.com/api.php?amount=5&token=${token}`);
+    const data = await response.json();
+    dispatch(requestSuccess(data.results));
+  } catch (error) {
+    dispatch(requestError(error));
+  }
+};
