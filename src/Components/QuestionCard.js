@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import '../styles/QuestionCard.css';
+import { showAnswer } from '../redux/actions';
 
 class QuestionCard extends React.Component {
   handleDataTestId = (alt, i) => {
@@ -10,6 +12,11 @@ class QuestionCard extends React.Component {
       return 'correct-answer';
     }
     return `wrong-answer-${i}`;
+  }
+
+  handleShow = () => {
+    const { showAns } = this.props;
+    showAns();
   }
 
   handleRandomAlternatives = (alternatives) => {
@@ -24,7 +31,7 @@ class QuestionCard extends React.Component {
   }
 
   render() {
-    const { questions, index } = this.props;
+    const { questions, index, show } = this.props;
     if (questions.length === 0) return 'Loading';
     const incAnswer = 'incorrect_answers';
     const corrAnswer = 'correct_answer';
@@ -42,10 +49,16 @@ class QuestionCard extends React.Component {
         >
           {questions[index].question}
         </div>
-        <div data-testid="answer-options">
+        <div
+          aria-hidden="true"
+          data-testid="answer-options"
+          onClick={ this.handleShow }
+        >
           {
             randomAlternatives.map((alt, i) => (
               <button
+                className={ show
+                  && (alt === questions[index][corrAnswer] ? 'green' : 'red') }
                 key={ i }
                 type="button"
                 data-testid={ this.handleDataTestId(alt, i) }
@@ -63,6 +76,11 @@ class QuestionCard extends React.Component {
 const mapStateToProps = (state) => ({
   questions: state.player.data,
   index: state.player.index,
+  show: state.player.show,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  showAns: () => dispatch(showAnswer()),
 });
 
 QuestionCard.propTypes = {
@@ -70,4 +88,4 @@ QuestionCard.propTypes = {
   index: PropTypes.number,
 }.isRequired;
 
-export default connect(mapStateToProps)(QuestionCard);
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionCard);
