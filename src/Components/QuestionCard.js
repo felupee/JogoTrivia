@@ -40,7 +40,13 @@ class QuestionCard extends React.Component {
   }
 
   render() {
-    const { questions, index, show, disable, operacao } = this.props;
+    const {
+      questions,
+      index,
+      show,
+      disable,
+      operacao,
+    } = this.props;
     if (questions.length === 0) return 'Loading';
     const incAnswer = 'incorrect_answers';
     const corrAnswer = 'correct_answer';
