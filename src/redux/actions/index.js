@@ -34,6 +34,11 @@ export const hideAnswer = () => ({
   type: 'HIDE_ANSWER',
 });
 
+export const saveScore = (score) => ({
+  type: 'SAVE_SCORE',
+  score,
+});
+
 export const triviaThunk = () => async (dispatch) => {
   dispatch(requestBegin());
   try {

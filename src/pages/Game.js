@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import Header from '../Components/Header';
 import QuestionCard from '../Components/QuestionCard';
 import Timer from '../Components/Timer';
-import { hideAnswer, questionIndex, triviaThunk } from '../redux/actions/index';
+import { hideAnswer,
+  questionIndex, saveScore, triviaThunk } from '../redux/actions/index';
 
 class Game extends React.Component {
   constructor() {
     super();
     this.state = {
       disable: false,
+      seconds: 30,
     };
   }
 
@@ -28,6 +30,7 @@ class Game extends React.Component {
     hide();
     this.setState({
       disable: false,
+      seconds: 30,
     });
   }
 
@@ -37,13 +40,43 @@ class Game extends React.Component {
     });
   }
 
+  tick = () => {
+    this.setState((state) => ({
+      seconds: state.seconds - 1,
+    }), () => {
+      const { seconds } = this.state;
+      if (seconds === 0) {
+        this.setState({
+          seconds: 30,
+        });
+        this.handledisable();
+      }
+    });
+  }
+
+  operacao = ({ target }, difficulty) => {
+    const { name } = target;
+    const { seconds } = this.state;
+    const { score } = this.props;
+    const dez = 10;
+    const dificuldades = {
+      hard: 3,
+      medium: 2,
+      easy: 1,
+    };
+    if (name === 'correct') {
+      const totalScore = dez + (seconds * dificuldades[difficulty]);
+      score(totalScore);
+    }
+  }
+
   render() {
-    const { disable } = this.state;
+    const { disable, seconds } = this.state;
     return (
       <div>
         <Header />
-        <Timer btndisable={ this.handledisable } />
-        <QuestionCard disable={ disable } />
+        <Timer tick={ this.tick } seconds={ seconds } />
+        <QuestionCard disable={ disable } operacao={ this.operacao } />
         <button
           type="button"
           onClick={ this.handleClickNextBtn }
@@ -65,6 +98,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchQuestions: () => dispatch(triviaThunk()),
   changeIndex: () => dispatch(questionIndex()),
   hide: () => dispatch(hideAnswer()),
+  score: (payload) => dispatch(saveScore(payload)),
 });
 
 Game.propTypes = {
