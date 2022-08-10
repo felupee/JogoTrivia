@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import Header from '../Components/Header';
 
 class Feedback extends React.Component {
   showMsg = (score) => {
@@ -14,7 +15,10 @@ class Feedback extends React.Component {
   render() {
     const { assertions } = this.props;
     return (
-      <h2 data-testid="feedback-text">{this.showMsg(assertions)}</h2>
+      <div>
+        <Header />
+        <h2 data-testid="feedback-text">{this.showMsg(assertions)}</h2>
+      </div>
     );
   }
 }
@@ -28,5 +32,3 @@ const mapStateToProps = (store) => ({
 });
 
 export default connect(mapStateToProps)(Feedback);
-
-// teste
