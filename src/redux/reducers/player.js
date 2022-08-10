@@ -45,15 +45,19 @@ const player = (state = INITIAL_STATE, action) => {
       show: true,
     };
   case 'HIDE_ANSWER':
-    return {
-      ...state,
-      show: false,
-    };
+    return { ...state, show: false };
   case 'SAVE_SCORE':
     return {
       ...state,
       score: state.score + action.score,
       assertions: state.assertions + 1,
+    };
+  case 'RESET_GAME':
+    return {
+      ...state,
+      score: 0,
+      assertions: 0,
+      index: 0,
     };
   default:
     return state;
