@@ -26,8 +26,10 @@ class Game extends React.Component {
   }
 
   handleClickNextBtn = () => {
-    const { changeIndex, hide } = this.props;
+    const { changeIndex, hide, index, history } = this.props;
+    const four = 4;
     changeIndex();
+    if (index === four) history.push('/feedback');
     hide();
     this.setState({
       disable: false,
