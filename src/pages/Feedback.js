@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import Header from '../Components/Header';
 
 class Feedback extends React.Component {
-  showMsg = (score) => {
+  showMsg = (assertions) => {
     const limitScoreMin = 3;
-    if (score < limitScoreMin) {
+    if (assertions < limitScoreMin) {
       return 'Could be better...';
     }
     return 'Well Done!';
