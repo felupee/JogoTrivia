@@ -2,21 +2,17 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 class Timer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { seconds: 30 };
-  }
-
   componentDidMount() {
+    const { tick } = this.props;
     const mil = 1000;
-    this.interval = setInterval(() => this.tick(), mil);
+    this.interval = setInterval(() => tick(), mil);
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
   }
 
-  tick() {
+  /*   tick() {
     this.setState((state) => ({
       seconds: state.seconds - 1,
     }), () => {
@@ -29,10 +25,10 @@ class Timer extends React.Component {
         btndisable();
       }
     });
-  }
+  } */
 
   render() {
-    const { seconds } = this.state;
+    const { seconds } = this.props;
     return (
       <div>
         Timer:
@@ -43,7 +39,8 @@ class Timer extends React.Component {
   }
 }
 Timer.propTypes = {
-  btndisable: PropTypes.func.isRequired,
+  tick: PropTypes.func.isRequired,
+  seconds: PropTypes.number.isRequired,
 };
 
 export default Timer;

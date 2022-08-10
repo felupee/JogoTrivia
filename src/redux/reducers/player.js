@@ -8,6 +8,7 @@ const INITIAL_STATE = {
   score: 0,
   gravatarEmail: '',
   show: false,
+
 };
 
 const player = (state = INITIAL_STATE, action) => {
@@ -47,6 +48,11 @@ const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       show: false,
+    };
+  case 'SAVE_SCORE':
+    return {
+      ...state,
+      score: state.score + action.score,
     };
   default:
     return state;

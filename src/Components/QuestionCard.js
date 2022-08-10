@@ -14,6 +14,15 @@ class QuestionCard extends React.Component {
     return `wrong-answer-${i}`;
   }
 
+  handleAnswer = (alt) => {
+    const { questions, index } = this.props;
+    const corrAnswer = 'correct_answer';
+    if (alt === questions[index][corrAnswer]) {
+      return 'correct';
+    }
+    return 'wrong';
+  }
+
   handleShow = () => {
     const { showAns } = this.props;
     showAns();
@@ -31,7 +40,7 @@ class QuestionCard extends React.Component {
   }
 
   render() {
-    const { questions, index, show, disable } = this.props;
+    const { questions, index, show, disable, operacao } = this.props;
     if (questions.length === 0) return 'Loading';
     const incAnswer = 'incorrect_answers';
     const corrAnswer = 'correct_answer';
@@ -63,6 +72,8 @@ class QuestionCard extends React.Component {
                 type="button"
                 data-testid={ this.handleDataTestId(alt, i) }
                 disabled={ disable }
+                name={ this.handleAnswer(alt, i) }
+                onClick={ (event) => operacao(event, questions[index].difficulty) }
               >
                 { alt }
               </button>
