@@ -28,3 +28,5 @@ const mapStateToProps = (store) => ({
 });
 
 export default connect(mapStateToProps)(Feedback);
+
+// teste
