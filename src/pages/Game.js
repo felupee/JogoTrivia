@@ -13,6 +13,7 @@ class Game extends React.Component {
     this.state = {
       disable: false,
       seconds: 30,
+      showNextBtn: false,
     };
   }
 
@@ -31,6 +32,7 @@ class Game extends React.Component {
     this.setState({
       disable: false,
       seconds: 30,
+      showNextBtn: false,
     });
   }
 
@@ -64,25 +66,40 @@ class Game extends React.Component {
       medium: 2,
       easy: 1,
     };
+    this.handleNextBtn();
     if (name === 'correct') {
       const totalScore = dez + (seconds * dificuldades[difficulty]);
       score(totalScore);
     }
   }
 
+  handleNextBtn = () => {
+    this.setState({
+      showNextBtn: true,
+    });
+  }
+
   render() {
-    const { disable, seconds } = this.state;
+    const { disable, seconds, showNextBtn } = this.state;
     return (
       <div>
         <Header />
         <Timer tick={ this.tick } seconds={ seconds } />
-        <QuestionCard disable={ disable } operacao={ this.operacao } />
-        <button
-          type="button"
-          onClick={ this.handleClickNextBtn }
-        >
-          Next
-        </button>
+        <QuestionCard
+          disable={ disable }
+          operacao={ this.operacao }
+        />
+        {
+          showNextBtn && (
+            <button
+              type="button"
+              onClick={ this.handleClickNextBtn }
+              data-testid="btn-next"
+            >
+              Next
+            </button>
+          )
+        }
       </div>
     );
   }
@@ -92,6 +109,7 @@ const mapStateToProps = (state) => ({
   questions: state.player.data,
   error: state.player.error,
   show: state.player.show,
+  index: state.player.index,
 });
 
 const mapDispatchToProps = (dispatch) => ({
