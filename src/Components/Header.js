@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 class Header extends React.Component {
   render() {
-    const { name, gravatarEmail } = this.props;
+    const { name, gravatarEmail, score } = this.props;
 
     return (
       <header>
@@ -21,7 +21,7 @@ class Header extends React.Component {
         <p
           data-testid="header-score"
         >
-          0
+          {score}
         </p>
       </header>
     );
@@ -31,11 +31,13 @@ class Header extends React.Component {
 const mapStateToProps = (state) => ({
   name: state.player.name,
   gravatarEmail: state.player.gravatarEmail,
+  score: state.player.score,
 });
 
 Header.propTypes = {
   name: PropTypes.string,
   gravatarEmail: PropTypes.string,
+  score: PropTypes.number,
 }.isRequired;
 
 export default connect(mapStateToProps)(Header);

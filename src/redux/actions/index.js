@@ -39,6 +39,10 @@ export const saveScore = (score) => ({
   score,
 });
 
+export const resetGame = () => ({
+  type: 'RESET_GAME',
+});
+
 export const triviaThunk = () => async (dispatch) => {
   dispatch(requestBegin());
   try {
