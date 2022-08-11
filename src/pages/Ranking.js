@@ -1,9 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
+import { resetGame } from '../redux/actions';
 
 class Ranking extends React.Component {
+  handleHome = () => {
+    const { history, restart } = this.props;
+    restart();
+    history.push('/');
+  }
+
   render() {
-    const { history } = this.props;
     const rankingArray = JSON.parse(localStorage.getItem('ranking'))
       .sort((a, b) => b.score - a.score);
     return (
@@ -18,7 +25,7 @@ class Ranking extends React.Component {
         ))}
         <button
           type="button"
-          onClick={ () => history.push('/') }
+          onClick={ this.handleHome }
           data-testid="btn-go-home"
         >
           Home
@@ -28,8 +35,13 @@ class Ranking extends React.Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  restart: () => dispatch(resetGame()),
+});
+
 Ranking.propTypes = {
   history: PropTypes.objectOf(PropTypes.object).isRequired,
+  restart: PropTypes.func.isRequired,
 };
 
-export default Ranking;
+export default connect(null, mapDispatchToProps)(Ranking);
