@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import Header from '../Components/Header';
 import QuestionCard from '../Components/QuestionCard';
 import Timer from '../Components/Timer';
-import { hideAnswer,
-  questionIndex, saveScore, triviaThunk } from '../redux/actions/index';
+import { hideAnswer, questionIndex, saveScore, triviaThunk } from '../redux/actions';
 
 class Game extends React.Component {
   constructor() {
@@ -23,7 +22,26 @@ class Game extends React.Component {
     const token = localStorage.getItem('token');
     if (token === 'INVALID_TOKEN')history.push('/');
     if (error.length > 0) history.push('/');
+    if (!JSON.parse(localStorage.getItem('ranking'))) {
+      localStorage.setItem('ranking', JSON.stringify([]));
+    }
   }
+
+  componentWillUnmount() {
+    const { gravatarEmail, name, placar } = this.props;
+    const player = {
+      name,
+      score: placar,
+      picture: gravatarEmail,
+    };
+    console.log(player);
+    const item = JSON.parse(localStorage.getItem('ranking'));
+    this.setLocalStorage([...item, player]);
+  }
+
+  setLocalStorage=(player) => {
+    localStorage.setItem('ranking', JSON.stringify(player));
+  };
 
   handleClickNextBtn = () => {
     const { changeIndex, hide, index, history } = this.props;
@@ -112,6 +130,9 @@ const mapStateToProps = (state) => ({
   error: state.player.error,
   show: state.player.show,
   index: state.player.index,
+  name: state.player.name,
+  gravatarEmail: state.player.gravatarEmail,
+  placar: state.player.score,
 });
 
 const mapDispatchToProps = (dispatch) => ({
