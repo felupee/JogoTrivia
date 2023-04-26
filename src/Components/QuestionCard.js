@@ -53,7 +53,7 @@ class QuestionCard extends React.Component {
     const alternatives = [questions[index][corrAnswer], ...questions[index][incAnswer]];
     const randomAlternatives = this.handleRandomAlternatives(alternatives);
     return (
-      <div>
+      <div className="questioncard">
         <div
           data-testid="question-category"
         >

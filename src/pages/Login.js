@@ -3,6 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import md5 from 'crypto-js/md5';
 import { userData } from '../redux/actions';
+import '../styles/Login.css';
+import logo from './jogotrivia.png';
 
 class Login extends React.Component {
   constructor() {
@@ -70,6 +72,7 @@ class Login extends React.Component {
         <label
           htmlFor="nome"
         >
+          <img src={ logo } alt="logo" width="300" />
           Nome:
           <input
             type="text"

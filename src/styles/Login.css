@@ -1,0 +1,59 @@
+body {
+    background-color: #1c1c1c;
+    color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  form.App {
+    border: 2px solid #fff671;
+    border-radius: 0.25rem;
+    box-shadow: 2px 2px 5px #fff671, -2px -2px 5px #fff671, -2px 2px 5px #fff671, 2px -2px 5px #fff671;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    max-width: 50%;
+    margin: auto;
+    padding: 9rem;
+    padding-top: 0%;
+    background-color: #292929;
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    font-size: 40px;
+  }
+  
+  input {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    font-size: 20px;
+  }
+  
+  button {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: none;
+    background-color: #3a3a3a;
+    color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+    font-size: 20px;
+    width: 200px;
+    height: 50px;
+  }
+  
+  button:hover {
+    background-color: #1c1c1c;
+  }
+  

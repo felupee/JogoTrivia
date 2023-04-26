@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { resetGame } from '../redux/actions';
+import '../styles/Ranking.css';
 
 class Ranking extends React.Component {
   handleHome = () => {
@@ -14,13 +15,12 @@ class Ranking extends React.Component {
     const rankingArray = JSON.parse(localStorage.getItem('ranking'))
       .sort((a, b) => b.score - a.score);
     return (
-      <div>
-        <tittle data-testid="ranking-title">ranking-title</tittle>
+      <div className="ranking">
+        <tittle data-testid="ranking-title">Ranking Geral</tittle>
         { rankingArray.map((player, index) => (
           <div key={ index }>
             <p data-testid={ `player-name-${index}` }>{player.name}</p>
             <p data-testid={ `player-score-${index}` }>{player.score}</p>
-            <img src={ player.picture } alt="gravatar" />
           </div>
         ))}
         <button

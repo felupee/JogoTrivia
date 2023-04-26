@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Header from '../Components/Header';
 import { resetGame } from '../redux/actions';
+import '../styles/Feedback.css';
 
 class Feedback extends React.Component {
   showMsg = (assertions) => {
@@ -25,13 +26,16 @@ class Feedback extends React.Component {
   }
 
   render() {
-    const { assertions, score } = this.props;
+    const { assertions } = this.props;
     return (
-      <div>
+      <div className="feedback">
         <Header />
         <h2 data-testid="feedback-text">{this.showMsg(assertions)}</h2>
-        <p data-testid="feedback-total-question">{ assertions }</p>
-        <p data-testid="feedback-total-score">{ score }</p>
+        <p data-testid="feedback-total-question">
+          Acertos:
+          {' '}
+          { assertions }
+        </p>
         <button
           type="button"
           data-testid="btn-play-again"
@@ -53,7 +57,6 @@ class Feedback extends React.Component {
 
 Feedback.propTypes = {
   assertions: PropTypes.number.isRequired,
-  score: PropTypes.number.isRequired,
   history: PropTypes.objectOf(PropTypes.object).isRequired,
   restart: PropTypes.func.isRequired,
 };

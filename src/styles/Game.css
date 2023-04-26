@@ -1,0 +1,87 @@
+.principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #272727;
+    color: white;
+    border-radius: 10px;;
+  }
+  
+  .Appheader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-size: 24px;
+  }
+  
+
+  .score {
+    margin-left: 20px;
+  }
+
+  #header-profile-picture {
+    border-radius: 50%;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  #header-player-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  #header-score {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .timer {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .questioncard {
+    border: 2px solid #fff671;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .questioncard div {
+    margin-bottom: 10px;
+  }
+  
+  .answer-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  button {
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #555;
+  }
+  
+  .green {
+    background-color: #00b300;
+  }
+  
+  .red {
+    background-color: #b30000;
+  }
+  
+  

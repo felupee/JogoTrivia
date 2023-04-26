@@ -5,6 +5,7 @@ import Header from '../Components/Header';
 import QuestionCard from '../Components/QuestionCard';
 import Timer from '../Components/Timer';
 import { hideAnswer, questionIndex, saveScore, triviaThunk } from '../redux/actions';
+import '../styles/Game.css';
 
 class Game extends React.Component {
   constructor() {
@@ -102,7 +103,7 @@ class Game extends React.Component {
   render() {
     const { disable, seconds, showNextBtn } = this.state;
     return (
-      <div>
+      <div className="principal">
         <Header />
         <Timer tick={ this.tick } seconds={ seconds } />
         <QuestionCard

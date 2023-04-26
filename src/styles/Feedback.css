@@ -1,0 +1,36 @@
+.feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    width: 50vh;
+    background-color: #2e2e2e;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #fff671, -2px -2px 5px #fff671, -2px 2px 5px #fff671, 2px -2px 5px #fff671;
+  }
+  
+  .feedback h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .feedback p {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .feedback button {
+    background-color: #fff671;
+    color: black;
+    font-size: 1.5rem;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    margin-top: 2rem;
+  }
+  
+  .feedback button:hover {
+    background-color: #ffee00;
+  }
