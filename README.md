@@ -3,7 +3,7 @@
 </p>
 
 
-Olá, seja bem vindo ao repositório do projeto Jogo Trivia! Aqui você irá aprender como instalar e testar esse projeto na sua máquina, mas caso queira uma explicação mais detalhada sobre o projeto StarWars e suas funcionalidades, sem precisar baixar e executar o projeto, recomendo você a visitar esse mesmo projeto no meu portifólio clicando [aqui](https://felupee.github.io/front-end/projetos/JogoTrivia/jogoTrivia.html). Esse projeto foi feito em grupo, trabalhando comunicação da equipe, metodologias ágeis junto de DMs todos os dias durante o desenvolvimento.
+Olá, seja bem vindo ao repositório do projeto Jogo Trivia! Aqui você irá aprender como instalar e testar esse projeto na sua máquina, mas caso queira uma explicação mais detalhada sobre o projeto Jogo Trivia e suas funcionalidades, sem precisar baixar e executar o projeto, recomendo você a visitar esse mesmo projeto no meu portifólio clicando [aqui](https://felupee.github.io/front-end/projetos/JogoTrivia/jogoTrivia.html). Esse projeto foi feito em grupo, trabalhando comunicação da equipe, metodologias ágeis junto de DMs todos os dias durante o desenvolvimento.
 
 ## Habilidades :computer: :rocket: 
 
